@@ -1,6 +1,2 @@
-require "beer_search/version"
-
-module BeerSearch
-  class Error < StandardError; end
-  # Your code goes here...
-end
+#!/usr/bin/ruby
+require_relative '../config/environment.rb'
