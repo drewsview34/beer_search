@@ -1,7 +1,7 @@
 
 #Gems
 require 'httparty'
-#require 'pry'
+require 'pry'
 require 'uri'
 #require 'net/http'
 require 'json'
