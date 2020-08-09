@@ -1,7 +1,7 @@
 class CLI
     
-    def start
+    def run
         API.get_response
-        binding.pry
     end
+    
 end

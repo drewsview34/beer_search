@@ -2,10 +2,14 @@ class BeerSearchClass
 
     @@all = []
 
-    attr_accessor :id
+    attr_accessor :id, :name, :tagline, :description, :abv
 
-    def initialize(id)
+    def initialize(id, name, tagline, description, abv)
         @id = id
+        @name = name
+        @tagline = tagline
+        @description = description
+        @abv = abv
         save
     end
 

@@ -1,9 +1,6 @@
-
 #Gems
 require 'httparty'
 require 'pry'
-require 'uri'
-#require 'net/http'
 require 'json'
 
 #Classes
