@@ -20,4 +20,8 @@ class BeerSearchClass
     def self.all
         @@all
     end
+    
+    def self.find(input)
+        @@all[input.to_i - 1]
+    end
 end
