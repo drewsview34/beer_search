@@ -2,10 +2,9 @@ class BeerSearchClass
 
     @@all = []
 
-    attr_accessor :id, :name, :tagline, :description, :abv
+    attr_accessor :name, :tagline, :description, :abv
 
-    def initialize(id, name, tagline, description, abv)
-        @id = id
+    def initialize(name, tagline, description, abv)
         @name = name
         @tagline = tagline
         @description = description
@@ -21,7 +20,7 @@ class BeerSearchClass
         @@all
     end
     
-    def self.find(input)
+    def self.find_by_input(input)
         @@all[input.to_i - 1]
     end
 end
