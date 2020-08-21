@@ -4,6 +4,8 @@ class CLI
     
     def run
         API.get_response
+
+        @saved_beers = []
         
         welcome
 
@@ -13,7 +15,7 @@ class CLI
             search_menu
         else
             puts "Sorry! You're Not Old Enough."
-            return
+            exit
         end
 
         beer_selection = input
@@ -30,7 +32,7 @@ class CLI
 
     def search_menu
         puts "******* Please Select A Beer From The Following Options *******"
-        @saved_beers = display_beers
+        display_beers
         puts "******* Please Enter A Number For Your Selection *******"
     end
 
@@ -45,29 +47,44 @@ class CLI
     end
 
     def pick_a_beer(beer_selection)
-        if beer_selection.to_i <= 0 && beer_selection.to_i >= BeerSearchClass.all.length
+        if beer_selection.to_i <= 0 || beer_selection.to_i >= BeerSearchClass.all.length
             puts "Invalid response. Please Choose a Number From 1 - 25."
+            beer_selection = input
+            pick_a_beer(beer_selection)
+    
         else
             details = BeerSearchClass.find_by_input(beer_selection)
         puts "******* You Chose #{details.name}. Here Are The Detials. *******"
         puts details.abv
         puts details.tagline
         puts details.description
+
         end
     end
 
     def search_for_another_beer
         puts "******* Would You Like To Search For Another Beer? Please Enter 'y' To Search. Or 'n' To Exit *******"
-        search_again = gets.chomp
-        if search_again == "y"
+        search_again = input
+        if search_again != "y" && search_again != "n"
+            puts "Invalid Response. Try Again."
+            search_for_another_beer
 
-            puts "Great! Lets Search for Some Beers"
+        elsif search_again == "n"
+            exit
+
+        else search_again == "y"
             search_menu
+            search_again_response = input
+            pick_a_beer(search_again_response)
 
-            beer_selection = gets.chomp
-            pick_a_beer(beer_selection)
-    
             search_for_another_beer
         end
+        return
     end
+
+    def exit
+        puts "Thank You for Using BeerSearch. Goodbye."
+        return
+    end
+    
 end 
